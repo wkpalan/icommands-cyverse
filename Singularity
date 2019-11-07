@@ -26,9 +26,12 @@ Version 4.1.9
     mkdir -p /root/.irods && cd /root/.irods/
 
 	wget https://files.renci.org/pub/irods/releases/4.1.12/ubuntu14/irods-icommands-4.1.12-ubuntu14-x86_64.deb
-	dpkg -i irods-icommands-4.1.12-ubuntu14-x86_64.deb 
+	dpkg -i irods-icommands-4.1.12-ubuntu14-x86_64.deb
+    
     su root
     
+    
+    ils /iplant/home/shared/dillpicl
     ils /iplant/home/shared/dillpicl
 
 	echo "=============================================="
