@@ -3,35 +3,38 @@ From: ubuntu:bionic
 
 %labels
 MAINTAINER Kokulapalan Wimalanathan
-Version 4.1.9
+Version 4.2.8
 
 %environment
-    export IRODS_HOST=data.cyverse.org
-    export IRODS_PORT=1247
-    export IRODS_USER_NAME=anonymous
-    export IRODS_ZONE_NAME=iplant
+    export LC_ALL=C 
+    export DEBIAN_FRONTEND=noninteractive
 
 %post
     
-    export IRODS_HOST=data.cyverse.org
-    export IRODS_PORT=1247
-    export IRODS_USER_NAME=anonymous
-    export IRODS_ZONE_NAME=iplant
+    export IRODS_HOST="data.cyverse.org"
+    export IRODS_PORT="1247"
+    export IRODS_USER_NAME="anonymous"
+    export IRODS_ZONE_NAME="iplant"
     
 	echo "Running post.sh"
     
-	apt-get -yq update && apt-get -yq upgrade
-    apt-get -yq install libfuse2 libssl1.0.0 wget 
+	apt-get -yq update
+    apt-get -yq install wget gnupg2
+    wget -q https://packages.irods.org/irods-signing-key.asc 
+    apt-key add irods-signing-key.asc
+    echo "deb [arch=amd64] https://packages.irods.org/apt/ bionic main" | tee /etc/apt/sources.list.d/renci-irods.list
+    apt-get -yq update
+    apt-get -yq install irods-icommands 
 
-    mkdir -p /root/.irods && cd /root/.irods/
+    #apt-get -yq update && apt-get install 
 
-	wget https://files.renci.org/pub/irods/releases/4.1.12/ubuntu14/irods-icommands-4.1.12-ubuntu14-x86_64.deb
-	dpkg -i irods-icommands-4.1.12-ubuntu14-x86_64.deb
+	#wget https://files.renci.org/pub/irods/releases/4.1.12/ubuntu14/irods-icommands-4.1.12-ubuntu14-x86_64.deb
+	#dpkg -i irods-icommands-4.1.12-ubuntu14-x86_64.deb
+
+    #mkdir -p /root/.irods && cd /root/.irods/
+
+    #su root
     
-    su root
-    
-    
-    ils /iplant/home/shared/dillpicl
     ils /iplant/home/shared/dillpicl
 
 	echo "=============================================="
