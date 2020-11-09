@@ -3,7 +3,7 @@ From: ubuntu:bionic
 
 %labels
 MAINTAINER Kokulapalan Wimalanathan
-Version 4.2.8
+Version 4.1.12
 
 %environment
     export LC_ALL=C 
@@ -16,25 +16,14 @@ Version 4.2.8
     export IRODS_USER_NAME="anonymous"
     export IRODS_ZONE_NAME="iplant"
     
-	echo "Running post.sh"
+	echo "Running Post"
     
 	apt-get -yq update
-    apt-get -yq install wget gnupg2
-    wget -q https://packages.irods.org/irods-signing-key.asc 
-    apt-key add irods-signing-key.asc
-    echo "deb [arch=amd64] https://packages.irods.org/apt/ bionic main" | tee /etc/apt/sources.list.d/renci-irods.list
-    apt-get -yq update
-    apt-get -yq install irods-icommands 
+    apt-get -yq install wget libssl1.0.0  libfuse2
 
-    #apt-get -yq update && apt-get install 
-
-	#wget https://files.renci.org/pub/irods/releases/4.1.12/ubuntu14/irods-icommands-4.1.12-ubuntu14-x86_64.deb
-	#dpkg -i irods-icommands-4.1.12-ubuntu14-x86_64.deb
-
-    #mkdir -p /root/.irods && cd /root/.irods/
-
-    #su root
-    
+	wget https://files.renci.org/pub/irods/releases/4.1.12/ubuntu14/irods-icommands-4.1.12-ubuntu14-x86_64.deb
+	dpkg -i irods-icommands-4.1.12-ubuntu14-x86_64.deb
+   
     ils /iplant/home/shared/dillpicl
 
 	echo "=============================================="
