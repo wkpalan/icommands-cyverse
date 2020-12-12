@@ -2,8 +2,9 @@ Bootstrap: docker
 From: ubuntu:bionic
 
 %labels
+OWNER Kokulapalan Wimalanathan
 MAINTAINER Kokulapalan Wimalanathan
-Version 4.1.12
+ICOMMANDS_Version 4.1.12
 
 %environment
     export LC_ALL=C 
